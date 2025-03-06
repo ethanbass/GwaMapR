@@ -2,29 +2,37 @@
 % Please edit documentation in R/plot_gwas.R
 \name{plot_gwas}
 \alias{plot_gwas}
-\title{Plot gene arrows}
+\title{Plot gene arrow diagram from GWAS results}
 \usage{
 plot_gwas(
-  genes,
+  gff,
   chr,
   pos,
   n = 10,
   legend_col = 2,
   legend_size = 0.5,
-  feature_size = 1.2
+  feature_width = 1.2
 )
 }
 \arguments{
-\item{genes}{GFF annotation file as data.table.}
+\item{gff}{GFF annotation file as \code{\link[data.table:data.table]{data.table}}.}
 
-\item{chr}{String denoting chromosome.}
+\item{chr}{Chromosome or contig to plot.}
 
-\item{pos}{String denoting position on chromosome.}
+\item{pos}{Position in chromosome or contig to plot.}
 
-\item{legend_size}{Legend size in cm. Defaults to \code{0.5}.}
+\item{n}{Number of genes to include. This will be the top \code{n} genes
+closest to the provided SNP.}
 
-\item{feature_size}{Defaults to \code{1.2}.}
+\item{legend_col}{Number of columns to include in legend.}
+
+\item{legend_size}{Size of legend (in cm). Defaults to \code{0.5}.}
+
+\item{feature_width}{Line width for feature annotations. Defaults to \code{1.2}.}
 }
 \description{
-Plot gene arrows
+Plot gene arrow diagram from GWAS results
+}
+\author{
+Ethan Bass
 }

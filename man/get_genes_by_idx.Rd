@@ -6,6 +6,11 @@
 \usage{
 get_genes_by_idx(df, genes, idx = 1, half_width = 50000)
 }
+\arguments{
+\item{genes}{GFF annotation file as \code{data.table}.}
+
+\item{half_width}{Half width. Defaults to \code{50000}.}
+}
 \description{
 Get genes by index
 }

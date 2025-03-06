@@ -7,7 +7,7 @@
 get_genes_by_pos(genes, chr, loc, half_width = 50000)
 }
 \arguments{
-\item{genes}{GFF annotation file as data.table}
+\item{genes}{GFF annotation file as \code{data.table}.}
 
 \item{chr}{String denoting chromosome}
 

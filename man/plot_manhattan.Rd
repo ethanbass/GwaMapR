@@ -33,6 +33,8 @@ Argument to \code{fastman_gg}.}
 \code{nrow(x)}.}
 
 \item{title}{A string denoting the title to be printed at the top of the plot.}
+
+\item{...}{Additional arguments to \code{\link[fastman:fastman]{fastman::fastman_gg}}.}
 }
 \description{
 Wrapper around the \code{fastman_gg} function in the

@@ -1,5 +1,5 @@
 #' Get genes by position
-#' @param genes GFF annotation file as data.table
+#' @param genes GFF annotation file as \code{data.table}.
 #' @param chr String denoting chromosome
 #' @param loc String denoting position on chromosome
 #' @param half_width Half width. Defaults to \code{50000}.
@@ -51,6 +51,8 @@ get_genes_by_pos <- function(genes, chr, loc, half_width=50000){
 }
 
 #' Get genes by index
+#' @param genes GFF annotation file as \code{data.table}.
+#' @param half_width Half width. Defaults to \code{50000}.
 get_genes_by_idx <- function(df, genes, idx = 1, half_width = 50000){
   df_sel <- head(df[order(df$p_lrt),])
   chr <- df_sel[[idx,"chr"]]
@@ -104,6 +106,9 @@ get_genes_by_idx <- function(df, genes, idx = 1, half_width = 50000){
   df.local
 }
 
+#' Get peaks
+#' @importFrom utils head
+#' @param genes GFF annotation file as \code{data.table}.
 get_peaks <- function(df, genes, n = NULL, t = NULL, half_width = 1000){
   peaks_df <- df[order(df$p_lrt)]
   if (!is.null(n)){
@@ -159,4 +164,5 @@ get_peaks <- function(df, genes, n = NULL, t = NULL, half_width = 1000){
   peak_gene_mapping
 }
 
+#' Get genes
 get_genes <- get_genes_by_pos

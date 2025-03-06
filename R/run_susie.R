@@ -33,7 +33,9 @@ run_susie <- function(Y, bed, genes, chr, locus, window = 1e6,
 
   samples_idx <- if(any(is.na(Y))){
     which(!is.na(Y))
-  } else{seq_along(Y)}
+  } else{
+    seq_along(Y)
+  }
 
   tmpfile <- tempfile()
   bigsnpr::snp_readBed2(bed, backingfile = tmpfile,
