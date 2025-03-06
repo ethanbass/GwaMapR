@@ -1,13 +1,13 @@
 Package: GwaMapR
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Genome Wide Assocation Mapping Tools
 Version: 0.1.0
 Authors@R: c(
     person("Ethan", "Bass", , "ethanbass@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-6175-6739"))
   )
-Description: More about what it does (maybe more than one line).
-    Continuation lines should be indented.
+Description: A collection of convenience functions for genome wide association
+    mapping.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
