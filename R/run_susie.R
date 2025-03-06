@@ -18,7 +18,7 @@
 #' @param ... Additional arguments to \code{\link[susieR]{susieR}}.
 #' @author Ethan Bass
 
-susie_wrapper <- function(Y, bed, genes, chr, locus, window = 1e6,
+run_susie <- function(Y, bed, genes, chr, locus, window = 1e6,
                           coverage = 0.95, plot_it = TRUE,
                           verbose = getOption("verbose"), ...){
   genes <- parse_annotations(genes)
