@@ -6,7 +6,7 @@ Authors@R: c(
     person("Ethan", "Bass", , "ethanbass@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-6175-6739"))
   )
-Description: A collection of convenience functions for genome wide association
+Description: A collection of convenience functions for analysis and visualization of genome wide association
     mapping.
 License: GPL (>= 3)
 Encoding: UTF-8
