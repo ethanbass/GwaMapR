@@ -23,7 +23,7 @@ plot_gwas <- function(gff, chr, pos, n = 10, legend_col=2,
   gns$gene <- factor(gns$gene, levels=unique(gns$gene[order(gns$start)]), )
   ggplot(gns, aes(xmin = .data$start, xmax = .data$end, y = .data$seqid,
                   fill = .data$gene, forward = .data$orientation)) +
-    gggff::geom_gene_arrow() +
+    gggenes::geom_gene_arrow() +
     scale_fill_brewer(palette = "Set3") + gggenes::theme_genes() +
     gggenes::geom_feature(
       aes(x = pos, y = chr), linewidth = feature_width
