@@ -13,6 +13,7 @@
 #' @param feature_width Line width for feature annotations. Defaults to \code{1.2}.
 #' @author Ethan Bass
 #' @export
+
 plot_gwas <- function(gff, chr, pos, n = 10, legend_col=2,
                       legend_size = 0.5, feature_width = 1.2){
   gns <- head(get_genes_by_pos(gff, chr, pos), n = n)

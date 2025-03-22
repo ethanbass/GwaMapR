@@ -40,3 +40,6 @@ Argument to \code{fastman_gg}.}
 Wrapper around the \code{fastman_gg} function in the
 \code{\link[fastman:fastman]{fastman}} package.
 }
+\author{
+Ethan Bass
+}

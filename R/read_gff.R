@@ -3,6 +3,8 @@
 #' @param path Path to GFF3 file
 #' @param what What features to include (\code{gene} or \code{mRNA})
 #' @author Ethan Bass
+#' @export
+
 read_gff <- function(path, what = c("gene", "mRNA")){
   what <- match.arg(what, c("gene", "mRNA"))
   df <- data.table::fread(path, skip = 1, sep = "\t", sep2 = ";",

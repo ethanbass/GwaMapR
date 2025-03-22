@@ -17,6 +17,7 @@
 #' @param verbose Logical. Whether to print messages to console.
 #' @param ... Additional arguments to \code{\link[susieR]{susieR}}.
 #' @author Ethan Bass
+#' @export
 
 run_susie <- function(Y, bed, genes, chr, locus, window = 1e6,
                           coverage = 0.95, plot_it = TRUE,

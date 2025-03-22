@@ -165,4 +165,5 @@ get_peaks <- function(df, genes, n = NULL, t = NULL, half_width = 1000){
 }
 
 #' Get genes
+#' @export
 get_genes <- get_genes_by_pos

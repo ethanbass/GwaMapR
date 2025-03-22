@@ -18,6 +18,9 @@
 #' \code{nrow(x)}.
 #' @param title A string denoting the title to be printed at the top of the plot.
 #' @param ... Additional arguments to \code{\link[fastman:fastman]{fastman::fastman_gg}}.
+#' @author Ethan Bass
+#' @export
+
 plot_manhattan <- function(x, chr = "chr", bp = "ps",
                            p = "p_lrt", n = NULL, title = NULL, ...){
   check_packages(c("fastman","mdthemes"))
