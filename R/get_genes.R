@@ -7,13 +7,13 @@ get_genes_by_pos <- function(genes, chr, loc, half_width=50000){
   # Create GRanges object for the single peak position
   peak_point <- GenomicRanges::GRanges(
     seqnames = chr,
-    ranges = GenomicRanges::IRanges(start = loc, end = loc)
+    ranges = IRanges::IRanges(start = loc, end = loc)
   )
 
   # Convert gene locations to GRanges
   gene_ranges <- GenomicRanges::GRanges(
     seqnames = genes$seqid,
-    ranges = GenomicRanges::IRanges(
+    ranges = IRanges::IRanges(
       start = genes$start,
       end = genes$end
     ),
@@ -61,13 +61,13 @@ get_genes_by_idx <- function(df, genes, idx = 1, half_width = 50000){
   # Create GRanges object for the single peak position
   peak_point <- GenomicRanges::GRanges(
     seqnames = chr,
-    ranges = GenomicRanges::IRanges(start = loc, end = loc)
+    ranges = IRanges::IRanges(start = loc, end = loc)
   )
 
   # Convert gene locations to GRanges
   gene_ranges <- GenomicRanges::GRanges(
     seqnames = genes$seqid,
-    ranges = GenomicRanges::IRanges(
+    ranges = IRanges::IRanges(
       start = genes$start,
       end = genes$end
     ),
@@ -123,7 +123,7 @@ get_peaks <- function(df, genes, n = NULL, t = NULL, half_width = 1000){
   # Assuming you have a data frame of peaks with columns: chr, position, pvalue/LOD
   peaks_gr <- GenomicRanges::GRanges(
     seqnames = peaks_df$chr,
-    ranges = GenomicRanges::IRanges(
+    ranges = IRanges::IRanges(
       start = peaks_df$ps - half_width,
       end = peaks_df$ps + half_width
     ),
@@ -134,7 +134,7 @@ get_peaks <- function(df, genes, n = NULL, t = NULL, half_width = 1000){
   # Create GRanges for genes
   genes_gr <- GenomicRanges::GRanges(
     seqnames = genes$seqid,
-    ranges = GenomicRanges::IRanges(
+    ranges = IRanges::IRanges(
       start = genes$start,
       end = genes$end
     ),
