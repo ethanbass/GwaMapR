@@ -15,9 +15,14 @@ RoxygenNote: 7.3.2.9000
 Imports: 
     bigsnpr,
     data.table,
+    dplyr,
     fs,
+    GenomicRanges,
     gggenes,
     ggplot2,
+    IRanges,
+    S4Vectors,
+    stringr,
     susieR
 Suggests: 
     fastman,
