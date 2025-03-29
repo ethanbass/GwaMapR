@@ -30,7 +30,7 @@ get_genes_by_pos <- function(genes, chr, loc, half_width=50000){
     dplyr::mutate(
       distance_to_peak = GenomicRanges::mcols(distances)$distance,
       # Calculate distance from peak to gene center
-      distance_to_center = abs((.data$start + .data$end)/2 - .data$loc)
+      distance_to_center = abs((.data$start + .data$end)/2 - loc)
     ) |>
     dplyr::arrange(.data$distance_to_peak) |>
     dplyr::filter(.data$distance_to_peak <= half_width)
@@ -40,10 +40,10 @@ get_genes_by_pos <- function(genes, chr, loc, half_width=50000){
   df.local <- df.local |>
     dplyr::mutate(
       position = dplyr::case_when(
-        .data$strand == "+" & .data$loc < .data$start ~ "upstream",
-        .data$strand == "+" & .data$loc > .data$end ~ "downstream",
-        .data$strand == "-" & .data$loc > .data$end ~ "upstream",
-        .data$strand == "-" & .data$loc < .data$start ~ "downstream",
+        .data$strand == "+" & loc < .data$start ~ "upstream",
+        .data$strand == "+" & loc > .data$end ~ "downstream",
+        .data$strand == "-" & loc > .data$end ~ "upstream",
+        .data$strand == "-" & loc < .data$start ~ "downstream",
         TRUE ~ "overlapping"
       )
     )
@@ -55,8 +55,8 @@ get_genes_by_pos <- function(genes, chr, loc, half_width=50000){
 #' @param half_width Half width. Defaults to \code{50000}.
 get_genes_by_idx <- function(df, genes, idx = 1, half_width = 50000){
   df_sel <- head(df[order(df$p_lrt),])
-  chr <- df_sel[[idx,"chr"]]
-  loc <- df_sel[[idx,"ps"]]
+  chr <- df_sel[[idx, "chr"]]
+  loc <- df_sel[[idx, "ps"]]
 
   # Create GRanges object for the single peak position
   peak_point <- GenomicRanges::GRanges(
@@ -84,7 +84,7 @@ get_genes_by_idx <- function(df, genes, idx = 1, half_width = 50000){
     dplyr::mutate(
       distance_to_peak = GenomicRanges::mcols(distances)$distance,
       # Calculate distance from peak to gene center
-      distance_to_center = abs((.data$start + .data$end)/2 - .data$loc)
+      distance_to_center = abs((.data$start + .data$end)/2 - loc)
     ) |>
     dplyr::arrange(.data$distance_to_peak) |>
     dplyr::filter(.data$distance_to_peak <= half_width)
@@ -95,11 +95,11 @@ get_genes_by_idx <- function(df, genes, idx = 1, half_width = 50000){
     dplyr::mutate(
       position = dplyr::case_when(
         # For genes on + strand
-        .data$strand == "+" & .data$start > .data$loc ~ "downstream",
-        .data$strand == "+" & .data$end < .data$loc ~ "upstream",
+        .data$strand == "+" & .data$start > loc ~ "downstream",
+        .data$strand == "+" & .data$end < loc ~ "upstream",
         # For genes on - strand
-        .data$strand == "-" & .data$start > .data$loc ~ "upstream",
-        .data$strand == "-" & .data$end < .data$loc ~ "downstream",
+        .data$strand == "-" & .data$start > loc ~ "upstream",
+        .data$strand == "-" & .data$end < loc ~ "downstream",
         TRUE ~ "overlapping"
       )
     )
