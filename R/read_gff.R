@@ -6,10 +6,11 @@
 #' @export
 
 read_gff <- function(path, what = c("gene", "mRNA")){
+  type <- NULL # due to NSE notes in R CMD check
   what <- match.arg(what, c("gene", "mRNA"))
   df <- data.table::fread(path, skip = 1, sep = "\t", sep2 = ";",
               col.names = c("seqid", "source", "type", "start", "end",
                             "score", "strand", "phase", "attributes"))
-  genes <- df[.data$type == what]
+  genes <- df[type == what]
   genes
 }

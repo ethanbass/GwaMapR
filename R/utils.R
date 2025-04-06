@@ -1,4 +1,3 @@
-
 #' Check for suggested package
 #'
 #' This function checks for a suggested package and returns an error if the
@@ -6,6 +5,7 @@
 #' returns a boolean value.
 #'
 #' @noRd
+
 check_for_pkg <- function(pkg, return_boolean = FALSE){
   pkg_exists <- requireNamespace(pkg, quietly = TRUE)
   if (return_boolean){
@@ -20,6 +20,7 @@ check_for_pkg <- function(pkg, return_boolean = FALSE){
   invisible(pkg_exists)
 }
 
+#' Check packages
 #' @noRd
 check_packages <- function(pkg){
   invisible(sapply(pkg, check_for_pkg))
