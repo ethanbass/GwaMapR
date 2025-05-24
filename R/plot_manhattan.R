@@ -30,7 +30,7 @@ plot_manhattan <- function(x, chr = "chr", bp = "ps",
   fastman::fastman_gg(x, chr = chr, bp = bp, p = p,
                       genomewideline = -log10( .05 /n),
                       suggestiveline = -log10(1/n), ...) +
-    ggtitle(ifelse(!is.null(title), "BC-ratio", "")) +
+    ggtitle(ifelse(!is.null(title), title, "")) +
     mdthemes::md_theme_classic() +
     ylab("-log<sub>10</sub>(p)") + theme(legend.position = "none")
 }
