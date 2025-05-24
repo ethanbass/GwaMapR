@@ -62,7 +62,7 @@ run_susie <- function(Y, bed, genes, chr, locus, window = 1e6,
 
   annotations <- lapply(cs, function(L){
     lapply(L, function(i){
-      get_genes_by_pos(genes, map_sel[[i, "chromosome"]],
+      get_genes(genes, map_sel[[i, "chromosome"]],
                        loc = map_sel[[i, "physical.pos"]])
     })
   })

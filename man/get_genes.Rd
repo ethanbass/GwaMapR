@@ -6,6 +6,15 @@
 \usage{
 get_genes(genes, chr, loc, half_width = 50000)
 }
+\arguments{
+\item{genes}{GFF annotation file as \code{\link[data.table:data.table]{data.table}}.}
+
+\item{chr}{String denoting chromosome}
+
+\item{loc}{String denoting position on chromosome}
+
+\item{half_width}{Half width. Defaults to \code{50000}.}
+}
 \description{
 Get genes
 }

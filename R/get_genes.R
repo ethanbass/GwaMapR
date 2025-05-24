@@ -1,9 +1,9 @@
-#' Get genes by position
-#' @param genes GFF annotation file as \code{data.table}.
+#' Get genes
+#' @param genes GFF annotation file as \code{\link[data.table:data.table]{data.table}}.
 #' @param chr String denoting chromosome
 #' @param loc String denoting position on chromosome
 #' @param half_width Half width. Defaults to \code{50000}.
-get_genes_by_pos <- function(genes, chr, loc, half_width=50000){
+get_genes <- function(genes, chr, loc, half_width = 50000){
   # Create GRanges object for the single peak position
   peak_point <- GenomicRanges::GRanges(
     seqnames = chr,
@@ -53,6 +53,7 @@ get_genes_by_pos <- function(genes, chr, loc, half_width=50000){
 #' Get genes by index
 #' @param genes GFF annotation file as \code{data.table}.
 #' @param half_width Half width. Defaults to \code{50000}.
+#' @noRd
 get_genes_by_idx <- function(df, genes, idx = 1, half_width = 50000){
   df_sel <- head(df[order(df$p_lrt),])
   chr <- df_sel[[idx, "chr"]]
@@ -107,8 +108,12 @@ get_genes_by_idx <- function(df, genes, idx = 1, half_width = 50000){
 }
 
 #' Get peaks
+#'
 #' @importFrom utils head
 #' @param genes GFF annotation file as \code{data.table}.
+#' @param n Number of genes to return.
+#' @param t Significance threshold
+#' @param half_width Half width. Defaults to \code{1000}.
 get_peaks <- function(df, genes, n = NULL, t = NULL, half_width = 1000){
   peaks_df <- df[order(df$p_lrt)]
   if (!is.null(n)){
@@ -163,7 +168,3 @@ get_peaks <- function(df, genes, n = NULL, t = NULL, half_width = 1000){
     dplyr::arrange(dplyr::desc(.data$n_peaks), dplyr::desc(.data$max_score))
   peak_gene_mapping
 }
-
-#' Get genes
-#' @export
-get_genes <- get_genes_by_pos
