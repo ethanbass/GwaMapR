@@ -5,30 +5,38 @@
 \title{Plot gene arrow diagram from GWAS results}
 \usage{
 plot_gwas(
+  x,
   gff,
-  chr,
-  pos,
-  n = 10,
-  legend_col = 2,
-  legend_size = 0.5,
-  feature_width = 1.2
+  bed,
+  G,
+  threshold = 7.5,
+  max_hits = 21,
+  nrow = 7,
+  n_genes = 10,
+  title = TRUE,
+  ...
 )
 }
 \arguments{
+\item{x}{A \code{data.table} of GWAS hits.}
+
 \item{gff}{GFF annotation file as \code{\link[data.table:data.table]{data.table}}.}
 
-\item{chr}{Chromosome or contig to plot.}
+\item{bed}{Path to BED file.}
 
-\item{pos}{Position in chromosome or contig to plot.}
+\item{G}{SNPs in \code{bigsnpr} format or path to BED file.}
 
-\item{n}{Number of genes to include. This will be the top \code{n} genes
-closest to the provided SNP.}
+\item{threshold}{Significance threshold for SNPs to include (-log10(p)).}
 
-\item{legend_col}{Number of columns to include in legend.}
+\item{max_hits}{Number of SNPs to plot.}
 
-\item{legend_size}{Size of legend (in cm). Defaults to \code{0.5}.}
+\item{nrow}{Number of genes to plot per page.}
 
-\item{feature_width}{Line width for feature annotations. Defaults to \code{1.2}.}
+\item{n_genes}{Maximum number of genes to plot per SNP.}
+
+\item{title}{Whether to include titles.}
+
+\item{...}{Additional arguments to \code{plot_gwas_single}.}
 }
 \description{
 Plot gene arrow diagram from GWAS results
