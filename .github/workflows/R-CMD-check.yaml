@@ -49,7 +49,7 @@ jobs:
           extra-packages: |
             github::PhanstielLab/bedtoolsr,
             github::danielldhwang/fastman,
-            mdthemes,
+            github::thomas-neitmann/mdthemes,
             any::rcmdcheck,
             local::.
           needs: check, website
