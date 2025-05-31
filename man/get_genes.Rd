@@ -16,5 +16,9 @@ get_genes(genes, chr, loc, half_width = 50000)
 \item{half_width}{Half width. Defaults to \code{50000}.}
 }
 \description{
-Get genes
+Returns a list of genes associated with a specified SNP based on the GFF3
+annotation file.
+}
+\author{
+Ethan Bass
 }

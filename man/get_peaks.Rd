@@ -7,8 +7,20 @@
 get_peaks(df, genes, n = NULL, t = NULL, half_width = 1000)
 }
 \arguments{
+\item{df}{A \code{data.table} of GWAS results from \code{gemma}.}
+
 \item{genes}{GFF annotation file as \code{data.table}.}
+
+\item{n}{Number of genes to return.}
+
+\item{t}{Significance threshold}
+
+\item{half_width}{Half width. Defaults to \code{1000}.}
 }
 \description{
-Get peaks
+Returns a list of genes associated with the phenotype and the number of times
+the gene appears.
+}
+\author{
+Ethan Bass
 }

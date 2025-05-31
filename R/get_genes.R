@@ -1,8 +1,15 @@
 #' Get genes
+#'
+#' Returns a list of genes associated with a specified SNP based on the GFF3
+#' annotation file.
+#'
 #' @param genes GFF annotation file as \code{\link[data.table:data.table]{data.table}}.
 #' @param chr String denoting chromosome
 #' @param loc String denoting position on chromosome
 #' @param half_width Half width. Defaults to \code{50000}.
+#' @author Ethan Bass
+#' @export
+
 get_genes <- function(genes, chr, loc, half_width = 50000){
   # Create GRanges object for the single peak position
   peak_point <- GenomicRanges::GRanges(
@@ -109,17 +116,25 @@ get_genes_by_idx <- function(df, genes, idx = 1, half_width = 50000){
 
 #' Get peaks
 #'
+#' Returns a list of genes associated with the phenotype and the number of times
+#' the gene appears.
+#'
 #' @importFrom utils head
+#' @param df A \code{data.table} of GWAS results from \code{gemma}.
 #' @param genes GFF annotation file as \code{data.table}.
 #' @param n Number of genes to return.
 #' @param t Significance threshold
 #' @param half_width Half width. Defaults to \code{1000}.
+#' @author Ethan Bass
+#' @export
+
 get_peaks <- function(df, genes, n = NULL, t = NULL, half_width = 1000){
+  p_lrt <- NULL # due to NSE notes in R CMD check
   peaks_df <- df[order(df$p_lrt)]
   if (!is.null(n)){
     peaks_df <- head(peaks_df, n = n)
   } else if (!is.null(t)){
-    peaks_df <- peaks_df[.data$p_lrt < t]
+    peaks_df <- peaks_df[p_lrt < t]
   } else{
     stop("Please specify `n` or `t`.")
   }

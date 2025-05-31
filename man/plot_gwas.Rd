@@ -39,7 +39,8 @@ plot_gwas(
 \item{...}{Additional arguments to \code{plot_gwas_single}.}
 }
 \description{
-Plot gene arrow diagram from GWAS results
+Plots gene arrow diagrams for the top SNPs showing genes associated with each
+SNP.
 }
 \author{
 Ethan Bass

@@ -4,12 +4,12 @@
 \alias{read_gff}
 \title{Read GFF3}
 \usage{
-read_gff(path, what = c("gene", "mRNA"))
+read_gff(path, what = c("gene", "mRNA", "CDS", "exon", "all"))
 }
 \arguments{
-\item{path}{Path to GFF3 file}
+\item{path}{Path to GFF3 file.}
 
-\item{what}{What features to include (\code{gene} or \code{mRNA})}
+\item{what}{What features to include (\code{gene} or \code{mRNA}).}
 }
 \description{
 Read GFF3

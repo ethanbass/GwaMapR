@@ -19,3 +19,6 @@ Uses \code{bigsnpr} to pull the SNP specified by \code{rs} and calculates the
 minor allele frequency by dividing the number of individuals with the minor
 minor allele by the total number of individuals.
 }
+\author{
+Ethan Bass
+}

@@ -1,4 +1,8 @@
 #' Plot gene arrow diagram from GWAS results
+#'
+#' Plots gene arrow diagrams for the top SNPs showing genes associated with each
+#' SNP.
+#'
 #' @importFrom utils head
 #' @param x A \code{data.table} of GWAS hits.
 #' @param gff GFF annotation file as \code{\link[data.table:data.table]{data.table}}.
@@ -48,6 +52,8 @@ plot_gwas <- function(x, gff, bed, G, threshold = 7.5, max_hits = 21,
 #'
 #' @param bed Path to bed file.
 #' @param rs String specifying the target SNP (from column RS in the output from gemma).
+#' @author Ethan Bass
+#' @export
 calculate_maf <- function(bed, rs){
   snp <- get_snps(bed, rs)
   table(snp)[[2]]/sum(table(snp))
@@ -92,6 +98,10 @@ read_bed <- function(bed){
 }
 
 #' Plot gene arrow diagram for single GWAS hit
+#'
+#' Plots a gene arrow diagram for a single SNP showing the genes associated with
+#' the SNP based on information from a GFF3 annotation file.
+#'
 #' @importFrom gggenes geom_gene_arrow geom_feature theme_genes
 #' @importFrom ggplot2 ggplot aes guides ylab guide_legend theme unit ggtitle
 #' ylab .data scale_fill_brewer

@@ -31,7 +31,8 @@ closest to the provided SNP.}
 \item{feature_width}{Line width for feature annotations. Defaults to \code{1.2}.}
 }
 \description{
-Plot gene arrow diagram for single GWAS hit
+Plots a gene arrow diagram for a single SNP showing the genes associated with
+the SNP based on information from a GFF3 annotation file.
 }
 \author{
 Ethan Bass
