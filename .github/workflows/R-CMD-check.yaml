@@ -43,11 +43,13 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y bedtools
+      - name: Install bedtoolsr manually
+          run: |
+            Rscript -e "remotes::install_github('PhanstielLab/bedtoolsr', force = TRUE)"
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: |
-            github::PhanstielLab/bedtoolsr,
             github::danielldhwang/fastman,
             github::thomas-neitmann/mdthemes,
             any::rcmdcheck,
