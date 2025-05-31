@@ -46,7 +46,7 @@ jobs:
       
       - name: Install bedtoolsr manually
         run: |
-          Rscript -e "install.packages("remotes")"
+          Rscript -e "install.packages('remotes')"
           Rscript -e "remotes::install_github('PhanstielLab/bedtoolsr', force = TRUE)"
 
       - uses: r-lib/actions/setup-r-dependencies@v2
