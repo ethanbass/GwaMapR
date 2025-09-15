@@ -1,5 +1,5 @@
 # GwaMapR
-
+[![Last commit](https://img.shields.io/github/last-commit/ethanbass/chromatographR)]()
 [![stability-experimental](https://img.shields.io/badge/stability-experimental-orange.svg)](https://github.com/emersion/stability-badges#experimental)
 
 ### Overview
