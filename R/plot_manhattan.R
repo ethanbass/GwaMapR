@@ -22,7 +22,10 @@
 #' @export
 
 plot_manhattan <- function(x, chr = "chr", bp = "ps",
-                           p = "p_lrt", n = NULL, title = NULL, ...){
+                           p = NULL, n = NULL, title = NULL, ...){
+  if (is.null(p)){
+    p <- find_p(x)
+  }
   check_packages(c("fastman","mdthemes"))
   if (is.null(n)){
     n <- nrow(x)
@@ -33,4 +36,8 @@ plot_manhattan <- function(x, chr = "chr", bp = "ps",
     ggtitle(ifelse(!is.null(title), title, "")) +
     mdthemes::md_theme_classic() +
     ylab("-log<sub>10</sub>(p)") + theme(legend.position = "none")
+}
+
+find_p <- function(x){
+  p <- grep("p_", colnames(x), value = TRUE)[[1]]
 }
