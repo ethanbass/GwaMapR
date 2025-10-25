@@ -1,3 +1,9 @@
+# GwaMapR 0.2.0.9000
+
+* Added more informative error messages for `plot_gwas` function.
+* Have `plot_gwas` return plot list invisibly (in case ggarrange errors out).
+* Use minimal number of rows in `ggarrange` to reduce risk of viewport errors.
+
 # GwaMapR 0.2.0
 
 * Added `plot_gwas` function to plot gene arrow diagrams for multiple genes (after clumping GWAS results). The old `plot_gwas` function has been renamed as `plot_gwas_single`.

@@ -18,13 +18,16 @@
 #' @export
 
 plot_gwas <- function(x, gff, bed, G, threshold = 7.5, max_hits = 21,
-                      nrow = 7, n_genes = 10, title = TRUE, ...){
+                      nrow = 5, n_genes = 10, title = TRUE, ...){
   p_lrt <- NULL # due to NSE notes in R CMD check
   G <- get_G_from_bed(G)
   if (!fs::file_exists(bed)){
-    stop()
+    stop("No bed file could be located at the provided file path. Please check the `bed` argument and try again.")
   }
   x_sel <- clump_snps(x = x, G = G, threshold = threshold)
+  if (nrow(x_sel) == 0){
+    stop("There are no SNPs exceeding the significance threshold. Please adjust the `threshold` argument to proceed.")
+  }
   x_sel <- head(x_sel[order(p_lrt)], n = max_hits)
   plot_list <- apply(x_sel, 1, function(x){
     p <- plot_gwas_single(gff = gff, chr = x[["chr"]], pos = as.numeric(x[["ps"]]),
@@ -39,7 +42,10 @@ plot_gwas <- function(x, gff, bed, G, threshold = 7.5, max_hits = 21,
                                        "MAF = ", calculate_maf(bed = bed, rs = x[["rs"]])))
     }
   })
-  ggpubr::ggarrange(plotlist = plot_list, nrow = nrow, align = "v")
+  nrow <- min(length(plot_list),nrow)
+  try(plot(ggpubr::ggarrange(plotlist = plot_list, nrow = nrow, align = "v")))
+  # try(patchwork::wrap_plots(plot_list, nrow=nrow, ncol = 1))
+  return(invisible(plot_list))
 }
 
 #' Calculate MAF
