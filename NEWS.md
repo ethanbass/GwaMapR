@@ -1,4 +1,6 @@
-# GwaMapR 0.2.0.9000
+# GwaMapR 0.2.1.9000
+
+# GwaMapR 0.2.1
 
 * Added more informative error messages for `plot_gwas` function.
 * Have `plot_gwas` return plot list invisibly (in case ggarrange errors out).

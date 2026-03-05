@@ -8,7 +8,7 @@ plot_manhattan(
   x,
   chr = "chr",
   bp = "ps",
-  p = "p_lrt",
+  p = NULL,
   n = NULL,
   title = NULL,
   ...

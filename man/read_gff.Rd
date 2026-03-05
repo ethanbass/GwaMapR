@@ -4,12 +4,19 @@
 \alias{read_gff}
 \title{Read GFF3}
 \usage{
-read_gff(path, what = c("gene", "mRNA", "CDS", "exon", "all"))
+read_gff(
+  path,
+  what = c("gene", "mRNA", "CDS", "exon", "all"),
+  expand_attributes = FALSE
+)
 }
 \arguments{
 \item{path}{Path to GFF3 file.}
 
 \item{what}{What features to include (\code{gene} or \code{mRNA}).}
+
+\item{expand_attributes}{Logical. Whether to expand attributes or not.
+Defaults to \code{FALSE}.}
 }
 \description{
 Read GFF3

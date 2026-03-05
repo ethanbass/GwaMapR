@@ -11,7 +11,6 @@
 #' @export
 
 get_genes <- function(genes, chr, loc, half_width = 50000){
-  # Create GRanges object for the single peak position
   peak_point <- GenomicRanges::GRanges(
     seqnames = chr,
     ranges = IRanges::IRanges(start = loc, end = loc)

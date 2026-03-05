@@ -1,7 +1,7 @@
 #' Plot gene arrow diagram from GWAS results
 #'
 #' Plots gene arrow diagrams for the top SNPs showing genes associated with each
-#' SNP.
+#' SNP after
 #'
 #' @importFrom utils head
 #' @param x A \code{data.table} of GWAS hits.
@@ -9,24 +9,30 @@
 #' @param bed Path to BED file.
 #' @param G SNPs in \code{bigsnpr} format or path to BED file.
 #' @param threshold Significance threshold for SNPs to include (-log10(p)).
+#' @param thr.r2 Argument to Threshold over the squared correlation between two SNPs. Default is 0.2.
+#' @param size For one SNP, window size around this SNP to compute correlations.
+#' @param ncores Number of cores to use for clumping. Defaults to \code{2}.
 #' @param max_hits Number of SNPs to plot.
 #' @param nrow Number of genes to plot per page.
 #' @param n_genes Maximum number of genes to plot per SNP.
 #' @param title Whether to include titles.
 #' @param ... Additional arguments to \code{plot_gwas_single}.
+#' @return Invisibly returns list of individual plots.
 #' @author Ethan Bass
 #' @export
 
-plot_gwas <- function(x, gff, bed, G, threshold = 7.5, max_hits = 21,
-                      nrow = 5, n_genes = 10, title = TRUE, ...){
-  p_lrt <- NULL # due to NSE notes in R CMD check
+plot_gwas <- function(x, gff, bed, G, threshold = 7.5,
+                      thr.r2 = 0.2, size = 100/thr.r2, ncores = 2,
+                      max_hits = 21, nrow = 4, n_genes = 10, title = TRUE, ...){
+  p_lrt <- NULL # to silence NSE notes in R CMD check
   G <- get_G_from_bed(G)
   if (!fs::file_exists(bed)){
     stop("No bed file could be located at the provided file path. Please check the `bed` argument and try again.")
   }
-  x_sel <- clump_snps(x = x, G = G, threshold = threshold)
+  x_sel <- clump_snps(x = x, G = G, threshold = threshold, thr.r2 = thr.r2,
+                      size = size, ncores = ncores)
   if (nrow(x_sel) == 0){
-    stop("There are no SNPs exceeding the significance threshold. Please adjust the `threshold` argument to proceed.")
+    stop("There are no SNPs exceeding the specified significance threshold. Please adjust the `threshold` argument to proceed.")
   }
   x_sel <- head(x_sel[order(p_lrt)], n = max_hits)
   plot_list <- apply(x_sel, 1, function(x){
@@ -123,8 +129,20 @@ read_bed <- function(bed){
 #' @author Ethan Bass
 #' @export
 
-plot_gwas_single <- function(gff, chr, pos, n = 10, legend_col=2,
+plot_gwas_single <- function(pos, chr=NULL, gff, n = 10, legend_col=2,
                       legend_size = 0.5, feature_width = 1.2){
+  if (grepl("\\\\", pos)){
+    pos <- strsplit(pos, "\\\\")[[1]][1]
+  }
+  if (grepl(":", pos)){
+    split <- strsplit(pos,":")[[1]]
+    chr <- split[1]
+    pos <- as.numeric(split[2])
+  } else{
+    if (is.null(chr)){
+      stop("Chromatogram must be specified.")
+    }
+  }
   gns <- head(get_genes(gff, chr, pos), n = n)
   gns$gene <- stringr::str_split_fixed(gns$attributes, ",", 2)[, 2]
   gns$gene <- ifelse(gns$gene == "", "Unknown", gns$gene)

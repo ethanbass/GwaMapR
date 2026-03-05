@@ -62,7 +62,7 @@ run_susie <- function(Y, bed, genes, chr, locus, window = 1e6,
 
   annotations <- lapply(cs, function(L){
     lapply(L, function(i){
-      get_genes(genes, map_sel[[i, "chromosome"]],
+      get_genes(genes, chr = map_sel[[i, "chromosome"]],
                        loc = map_sel[[i, "physical.pos"]])
     })
   })
@@ -75,7 +75,9 @@ run_susie <- function(Y, bed, genes, chr, locus, window = 1e6,
 }
 
 parse_annotations <- function(genes){
-  if (inherits(genes, "character")){
+  if (inherits(genes, "data.table")){
+    return(genes)
+  } else if (inherits(genes, "character")){
     exists <- fs::file_exists(genes)
     if (!exists){
       stop(sprintf("File %s could not be found", basename(genes)))

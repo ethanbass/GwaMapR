@@ -5,9 +5,9 @@
 \title{Plot gene arrow diagram for single GWAS hit}
 \usage{
 plot_gwas_single(
-  gff,
-  chr,
   pos,
+  chr = NULL,
+  gff,
   n = 10,
   legend_col = 2,
   legend_size = 0.5,
@@ -15,11 +15,11 @@ plot_gwas_single(
 )
 }
 \arguments{
-\item{gff}{GFF annotation file as \code{\link[data.table:data.table]{data.table}}.}
+\item{pos}{Position in chromosome or contig to plot.}
 
 \item{chr}{Chromosome or contig to plot.}
 
-\item{pos}{Position in chromosome or contig to plot.}
+\item{gff}{GFF annotation file as \code{\link[data.table:data.table]{data.table}}.}
 
 \item{n}{Number of genes to include. This will be the top \code{n} genes
 closest to the provided SNP.}
